@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <title>CashFlowPilot | Business Owner Login</title>
+  <style>
+    :root { color-scheme: light; --ink:#172033; --muted:#667085; --line:#dbe2ea; --blue:#2457d6; --bg:#f4f7fb; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:radial-gradient(circle at top left,#e4edff 0,transparent 42%),var(--bg); }
+    .shell { width:min(100%,960px); display:grid; grid-template-columns:1fr 1fr; overflow:hidden; border:1px solid #e3e8ef; border-radius:24px; background:white; box-shadow:0 24px 70px #18233a12; }
+    .intro { padding:44px 38px; color:white; background:linear-gradient(145deg,#101b35,#183d83); display:flex; flex-direction:column; justify-content:space-between; gap:36px; }
+    .brand { font-weight:800; letter-spacing:-.04em; font-size:23px; }
+    .brand span { color:#90b4ff; }
+    h1 { font-size:clamp(30px,4vw,43px); line-height:1.1; letter-spacing:-.04em; margin:28px 0 16px; }
+    .intro p { color:#d4def4; line-height:1.65; margin:0; }
+    .pill { display:inline-flex; align-items:center; gap:8px; width:max-content; border:1px solid #ffffff40; border-radius:999px; padding:8px 12px; font-size:12px; color:#e3ebff; }
+    .dot { width:8px; height:8px; border-radius:50%; background:#6ee7b7; }
+    .form-panel { padding:40px; }
+    h2 { margin:0 0 8px; font-size:25px; letter-spacing:-.03em; }
+    .sub { margin:0 0 26px; color:var(--muted); font-size:14px; line-height:1.5; }
+    label { display:block; margin:15px 0 7px; font-size:13px; font-weight:650; }
+    input,select { width:100%; padding:12px 13px; border:1px solid var(--line); border-radius:10px; background:#fff; font:inherit; font-size:14px; color:var(--ink); outline:none; }
+    input:focus,select:focus { border-color:var(--blue); box-shadow:0 0 0 3px #2457d61a; }
+    .split { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .consent { display:flex; align-items:flex-start; gap:10px; margin:18px 0; font-size:12px; line-height:1.5; color:var(--muted); }
+    .consent input { width:16px; height:16px; margin-top:2px; flex:none; }
+    button { width:100%; border:0; border-radius:11px; background:var(--blue); color:white; padding:13px 16px; font:inherit; font-size:14px; font-weight:700; cursor:pointer; }
+    button:disabled { opacity:.6; cursor:wait; }
+    .notice { margin-top:16px; padding:12px; border-radius:10px; background:#f5f7fb; color:#475467; font-size:12px; line-height:1.55; }
+    #result { display:none; margin-top:14px; padding:12px; border-radius:10px; font-size:13px; line-height:1.5; overflow-wrap:anywhere; }
+    #result.show { display:block; } #result.ok { background:#ecfdf3; color:#05603a; } #result.err { background:#fff1f0; color:#b42318; }
+    footer { margin-top:20px; color:#98a2b3; font-size:11px; line-height:1.5; }
+    @media(max-width:720px) { .shell { grid-template-columns:1fr; } .intro { padding:28px; gap:20px; } .intro h1 { margin-top:18px; } .form-panel { padding:28px; } }
+    @media(max-width:390px) { body { padding:10px; } .split { grid-template-columns:1fr; gap:0; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="intro" aria-label="CashFlowPilot introduction">
+      <div>
+        <div class="brand">CashFlow<span>Pilot</span></div>
+        <h1>Make every cash-flow decision with confidence.</h1>
+        <p>Verify your business details to get started with cash-flow forecasting, payment planning, and early shortage alerts.</p>
+      </div>
+      <div>
+        <div class="pill"><span class="dot"></span> Business onboarding</div>
+        <p style="font-size:12px;margin-top:16px">Built for small-business owners in India.</p>
+      </div>
+    </section>
+    <section class="form-panel">
+      <h2>Business owner sign-in</h2>
+      <p class="sub">Enter your details and verify your business registration with Decentro.</p>
+      <form id="verifyForm">
+        <label for="ownerName">Owner's full name</label>
+        <input id="ownerName" name="owner_name" autocomplete="name" maxlength="100" required placeholder="e.g. Priya Sharma">
+        <label for="mobile">Mobile number</label>
+        <input id="mobile" name="mobile" inputmode="numeric" autocomplete="tel" pattern="[6-9][0-9]{9}" maxlength="10" required placeholder="10-digit Indian mobile number">
+        <label for="businessName">Registered business name</label>
+        <input id="businessName" name="business_name" maxlength="150" required placeholder="Name as registered with the authority">
+        <div class="split">
+          <div>
+            <label for="documentType">Document type</label>
+            <select id="documentType" name="document_type">
+              <option value="GSTIN">GSTIN</option>
+              <option value="PAN">Business PAN</option>
+            </select>
+          </div>
+          <div>
+            <label for="documentNumber">GSTIN / PAN</label>
+            <input id="documentNumber" name="id_number" required maxlength="15" autocomplete="off" placeholder="Enter business ID">
+          </div>
+        </div>
+        <label class="consent" for="consent">
+          <input id="consent" type="checkbox" required>
+          <span>I consent to checking the business document entered above through Decentro for business onboarding and verification.</span>
+        </label>
+        <button id="submitButton" type="submit">Verify business details</button>
+      </form>
+      <div id="result" role="status" aria-live="polite"></div>
+      <div class="notice"><strong>Important:</strong> Decentro's business-document verification checks a PAN/GSTIN record. It does not by itself prove that the person entering these details owns the business or complete a secure login. OTP/mobile verification and server-side session handling must be added before granting access to financial data.</div>
+      <footer>Never enter your Decentro API credentials on this page. They belong on the server in environment variables.</footer>
+    </section>
+  </main>
+  <script>
+    const form = document.getElementById('verifyForm');
+    const result = document.getElementById('result');
+    const button = document.getElementById('submitButton');
+    const documentType = document.getElementById('documentType');
+    const documentNumber = document.getElementById('documentNumber');
+
+    function updateDocumentHint() {
+      documentNumber.placeholder = documentType.value === 'GSTIN' ? '15-character GSTIN' : '10-character business PAN';
+      documentNumber.maxLength = documentType.value === 'GSTIN' ? 15 : 10;
+    }
+    documentType.addEventListener('change', updateDocumentHint);
+    updateDocumentHint();
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      result.className = '';
+      result.style.display = 'none';
+      const payload = {
+        owner_name: document.getElementById('ownerName').value.trim(),
+        mobile: document.getElementById('mobile').value.trim(),
+        business_name: document.getElementById('businessName').value.trim(),
+        document_type: documentType.value,
+        id_number: documentNumber.value.trim().toUpperCase(),
+        consent: document.getElementById('consent').checked
+      };
+      button.disabled = true;
+      button.textContent = 'Checking with Decentro…';
+      try {
+        const response = await fetch('/api/verify-business', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await response.json().catch(() => ({}));
+        result.textContent = data.message || (response.ok ? 'Verification completed.' : 'Verification could not be completed.');
+        result.className = 'show ' + (response.ok && data.verified ? 'ok' : 'err');
+        if (response.ok && data.verified) {
+          result.textContent += ' The next step is mobile OTP verification before creating a login session.';
+        }
+      } catch (_) {
+        result.textContent = 'Cannot reach the verification server. Start the Flask server and check your network connection.';
+        result.className = 'show err';
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Verify business details';
+      }
+    });
+  </script>
+</body>
+</html>
