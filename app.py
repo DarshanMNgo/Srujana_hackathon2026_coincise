@@ -10,7 +10,10 @@ import uuid
 from difflib import SequenceMatcher
 
 import requests
+from dotenv import load_dotenv
 from flask import Flask, jsonify, request, send_from_directory
+
+load_dotenv()  # Loads local .env; production should inject secrets via environment/config.
 
 app = Flask(__name__, static_folder=".", static_url_path="")
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024
