@@ -1,4 +1,4 @@
-# CashFlowPilot Demo
+# COINCISE Demo
 
 A lightweight cash-flow planning dashboard for small businesses.
 
