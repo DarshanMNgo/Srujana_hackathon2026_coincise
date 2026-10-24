@@ -1,4 +1,4 @@
-"""CashFlowPilot onboarding prototype.
+"""COINCISE onboarding prototype.
 
 This endpoint verifies a business PAN/GSTIN through Decentro. It is NOT a complete
 user-authentication system: do not grant dashboard access until owner/mobile OTP
@@ -68,7 +68,7 @@ def verify_business():
         "document_type": document_type,
         "id_number": id_number,
         "consent": "Y",
-        "consent_purpose": "Verify business registration for CashFlowPilot onboarding"
+        "consent_purpose": "Verify business registration for COINCISE onboarding"
     }
     headers = {
         "client_id": DECENTRO_CLIENT_ID,
