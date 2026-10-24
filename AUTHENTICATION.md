@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document describes the authentication flow and security controls that should be used if authentication is added to CashFlowPilot. It is a design and implementation checklist, not a claim that these controls are already implemented in the current prototype.
+This document describes the authentication flow and security controls that should be used if authentication is added to COINCISE. It is a design and implementation checklist, not a claim that these controls are already implemented in the current prototype.
 
 ## Current prototype notes
 
